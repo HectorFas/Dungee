@@ -5,12 +5,15 @@
 
 <button onclick="generarPin()">Start</button>
 
+<p id="pincho"></p>
 
 <script>
 function generarPin (){
     const pin = Math.floor(Math.random()*10000);
 
     console.log(pin);
+    
+    pincho.innerText(pin);
 }    
     
 
