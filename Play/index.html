@@ -8,4 +8,14 @@
 
 
 
-<button>PLAY</button>
+<button onclick="apuntarse()">PLAY</button>
+
+<script>
+    function apuntarse() {
+        fetch('https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/PIN3445.json',{
+            method: 'POST',
+            body: '{"name": "gerard"}'
+        })
+    }
+
+</script>
