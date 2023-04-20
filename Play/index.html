@@ -3,8 +3,8 @@
 <h1>PLAY</h1>
 
 
-<input placeholder="PIN"/>
-<input placeholder="Tu nombre"/>
+<input id="pinbe" placeholder="PIN"/>
+<input id="nombe" placeholder="Tu nombre"/>
 
 
 
@@ -12,9 +12,12 @@
 
 <script>
     function apuntarse() {
-        fetch('https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/PIN3445.json',{
+
+        const nom = nombe.value;
+        const pin = pinbe.value;
+        fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/PIN${pin}.json`, {
             method: 'POST',
-            body: '{"name": "gerard"}'
+            body: `{"name": "${nom}"}`
         })
     }
 
