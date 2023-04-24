@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-
 <h1>START</h1>
 
 <button onclick="generarPin()">Start</button>
@@ -15,7 +14,14 @@ function generarPin (){
 
     pincho.innerText = pin;
 }    
-    
 
+function obtnerUsuario (){
+    fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/`)
+    .then(datos => datos.json())
+    .then(json => {
+        `{"Usuario": "${json}"}`
+    })
+}    
 
+obtnerUsuario();
 </script>
