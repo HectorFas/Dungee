@@ -1,4 +1,7 @@
+<p id="users"></p>
 <script>
+    let lista;
+
     const json = {
         "users" : {
             "-NkJoPY" : {
@@ -11,6 +14,9 @@
     };
 
     for (const user in json.users) {
-        console.log(json.users[user].name)
+        lista = json.users[user].name
+        
     }
+    users.innertext = lista
+    
 </script>
