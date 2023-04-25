@@ -45,8 +45,8 @@
             .then(json => {
                 let preguntas = "";
 
-            for (const preguntas in json.preguntas) {
-                preguntas += json.users[user].name + " ";
+            for (const pregunta in json.preguntas) {
+                preguntas += json.preguntas[pregunta] + " ";
             }
             console.log.preguntas;
             pregunta.innerText = preguntas;
