@@ -7,19 +7,20 @@
 <p id="pincho"></p>
 
 <script>
-function generarPin (){
-    const pin = Math.floor(Math.random()*10000);
+    let pin;
+    function generarPin (){
+    pin = Math.floor(Math.random()*10000);
 
     console.log(pin);
 
     pincho.innerText = pin;
-}    
+    }    
 
-function obtnerUsuario (){
-    fetch(`https://dungeer.vercel.app/api/damelosuser`)
+    function obtnerUsuario (){
+    fetch(`https://dungeer.vercel.app/api/damelosuser?pin=${pin}`)
     .then(datos => datos.json())
     .then(json => console.log(json));
-}    
+    }    
 
 obtnerUsuario();
 </script>
