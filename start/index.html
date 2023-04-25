@@ -4,15 +4,14 @@
 
 <button onclick="generarPin()">Start</button>
 
-<p id="pincho"></p>
-<p id="userel"></p>
+<p id="pinEl"></p>
+<p id="userEl"></p>
 
 <script>
     let pin;
     function generarPin (){
         pin = Math.floor(Math.random()*10000);
-        console.log(pin);
-        pincho.innerText = pin;
+        pinEl.innerText = pin;
         setInterval(obtenerUsuario, 3000);
         
     }    
@@ -20,7 +19,15 @@
     function obtenerUsuario (){
         fetch(`https://dungeer.vercel.app/api/damelosuser?pin=${pin}`)
         .then(datos => datos.json())
-        .then(json => console.log(json));
+        .then(json => {
+            let lista = "";
+
+            for (const user in json.users) {
+                lista += json.users[user].name + " ";
+            }
+
+            userEl.innerText = lista;
+        });
         
         
     }    
