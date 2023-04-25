@@ -40,7 +40,8 @@
 
     function mostrarPreguntas() {
         fetch(`https://dungeer.vercel.app/api/damelaspreguntas.js`)
-        console.log(datos => datos.json)
+            .then(datos => datos.json)
+            .then(json => console.log(json))
     }
 
 </script>
