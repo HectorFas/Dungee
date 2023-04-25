@@ -5,6 +5,7 @@
 <button onclick="generarPin()">Start</button>
 
 <p id="pincho"></p>
+<p id="userel"></p>
 
 <script>
     let pin;
@@ -20,6 +21,7 @@
     fetch(`https://dungeer.vercel.app/api/damelosuser?pin=${pin}`)
     .then(datos => datos.json())
     .then(json => console.log(json));
+    userel.innerText = json
     }    
 
 obtnerUsuario();
