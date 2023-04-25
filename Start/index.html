@@ -4,24 +4,24 @@
 
 <button onclick="generarPin()">Start</button>
 
-<p id="pincho" onchange="obtnerUsuario()"></p>
+<p id="pincho"></p>
 <p id="userel"></p>
 
 <script>
     let pin;
     function generarPin (){
-    pin = Math.floor(Math.random()*10000);
-
-    console.log(pin);
-
-    pincho.innerText = pin;
+        pin = Math.floor(Math.random()*10000);
+        console.log(pin);
+        pincho.innerText = pin;
+        setInterval(obtnerUsuario, 3000);
+        
     }    
 
     function obtnerUsuario (){
-    fetch(`https://dungeer.vercel.app/api/damelosuser?pin=${pin}`)
-    .then(datos => datos.json())
-    .then(json => console.log(json));
-    userel.innerText = json
+        fetch(`https://dungeer.vercel.app/api/damelosuser?pin=${pin}`)
+        .then(datos => datos.json())
+        .then(json => console.log(json));
+        userel.innerText = json
     }    
 
 
