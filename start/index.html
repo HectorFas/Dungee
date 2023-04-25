@@ -24,6 +24,8 @@
         fetch(`https://dungeer.vercel.app/api/damelosuser?pin=${pin}`)
         .then(datos => datos.json())
         .then(json => {
+            
+
             let lista = "";
 
             for (const user in json.users) {

@@ -18,7 +18,7 @@
 
         const nom = nombe.value;
         const pin = pinbe.value;
-        fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}.json`, {
+        fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}/users.json`, {
             method: 'POST',
             body: `{"name": "${nom}"}`
         })
