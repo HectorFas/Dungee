@@ -20,6 +20,7 @@
     }    
 
     function obtenerUsuario (){
+        console.log("obteniendo: " + `https://dungeer.vercel.app/api/damelosuser?pin=${pin}`);
         fetch(`https://dungeer.vercel.app/api/damelosuser?pin=${pin}`)
         .then(datos => datos.json())
         .then(json => {
