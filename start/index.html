@@ -8,15 +8,18 @@
 <button onclick="generarPin()">Start</button>
 
 <p id="pinEl"></p>
-<p id="userEl"></p>
+<ul id="userEl">
+
+<button onclick="empezar()" ></button>    
+    
+</ul>
 
 <script>
     let pin;
     function generarPin (){
         pin = Math.floor(Math.random()*10000);
         pinEl.innerText = pin;
-        setInterval(obtenerUsuario, 3000);
-        
+        setInterval(obtenerUsuario, 3000);       
     }    
 
     function obtenerUsuario (){
@@ -25,7 +28,6 @@
         .then(datos => datos.json())
         .then(json => {
             
-
             let lista = "";
 
             for (const user in json.users) {
@@ -34,9 +36,10 @@
 
             userEl.innerText = lista;
         });
-        
-        
     }    
 
+    function empezar() {
+
+    }
 
 </script>
