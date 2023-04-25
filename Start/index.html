@@ -16,7 +16,9 @@ function generarPin (){
 }    
 
 function obtnerUsuario (){
-    
+    fetch(`https://dungeer.vercel.app/api/damelosuser`)
+    .then(datos => datos.json())
+    .then(json => console.log(json));
 }    
 
 obtnerUsuario();
