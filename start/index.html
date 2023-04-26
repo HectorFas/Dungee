@@ -48,14 +48,14 @@
                 let preguntas = "";
 
                 for (const pregunta in questions.preguntas) {
-                    preEl.innetText += "<h1>" + questions.preguntas[pregunta].pregunta + "</h1>" // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
-                    preEl.innetText += questions.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
-                    preEl.innetText += questions.preguntas[pregunta].Res2
-                    preEl.innetText += questions.preguntas[pregunta].Res3
-                    preEl.innetText += questions.preguntas[pregunta].Corr
+                    preguntas.innetText += "<h1>" + questions.preguntas[pregunta].pregunta + "</h1>" // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
+                    preguntas.innetText += questions.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
+                    preguntas.innetText += questions.preguntas[pregunta].Res2
+                    preguntas.innetText += questions.preguntas[pregunta].Res3
+                    preguntas.innetText += questions.preguntas[pregunta].Corr
                 }
                 
-                pregunta.innerText = preguntas;
+                preEl.innerText = preguntas;
         });
     }
 
