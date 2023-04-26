@@ -14,7 +14,7 @@
 
 <p id="pinEl"></p>
 <p id="userEl"></p>
-<p id="pre"></p>
+<p id="preEl"></p>
   
 
 <script>
@@ -48,11 +48,11 @@
                 let preguntas = "";
 
                 for (const pregunta in questions.preguntas) {
-                    pre.innetText += "<h1>" + questions.preguntas[pregunta].pregunta + "</h1>" // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
-                    pre.innetText += questions.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
-                    pre.innetText += questions.preguntas[pregunta].Res2
-                    pre.innetText += questions.preguntas[pregunta].Res3
-                    pre.innetText += questions.preguntas[pregunta].Corr
+                    preEl.innetText += "<h1>" + questions.preguntas[pregunta].pregunta + "</h1>" // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
+                    preEl.innetText += questions.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
+                    preEl.innetText += questions.preguntas[pregunta].Res2
+                    preEl.innetText += questions.preguntas[pregunta].Res3
+                    preEl.innetText += questions.preguntas[pregunta].Corr
                 }
                 
                 pregunta.innerText = preguntas;
