@@ -48,7 +48,7 @@
                 let preguntas = "";
 
                 for (const pregunta in questions.preguntas) {
-                    pre.innetText += questions.preguntas[pregunta].pregunta   // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
+                    pre.innetText += " " + questions.preguntas[pregunta].pregunta   // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
                     pre.innetText += questions.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
                     pre.innetText += questions.preguntas[pregunta].Res2
                     pre.innetText += questions.preguntas[pregunta].Res3
