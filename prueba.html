@@ -1,4 +1,4 @@
-<p id="users"></p>
+<p id="pre"></p>
 
 <script>
 
@@ -40,10 +40,8 @@ const questions = {
 
     let lista = "";
 
-    for (const pregunta in json.questions) {
-        lista += json.preguntas[pregunta].name + " ";
-    }
-
-    users.innerText = lista;
+    for (const pregunta in questions.preguntas) { //Ruta
+        pre.innetText += questions.preguntas[pregunta].pregunta
+    };
     
 </script>
