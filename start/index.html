@@ -45,7 +45,7 @@
         fetch(`https://dungeer.vercel.app/api/damelaspreguntas`)
             .then(datos => datos.json)
             .then(json => {
-                console.log.json;
+                console.log(json);
                 let preguntas = "";
 
                 for (const pregunta in json.preguntas) {
