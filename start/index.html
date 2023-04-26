@@ -7,7 +7,9 @@
 
 <nav>
     <button onclick="generarPin()">Start</button>
+    <button onclick="obtenerPreguntas()" >Generar preguntas</button>  
     <button onclick="mostrarPreguntas()" >Empezar partida</button>  
+
 </nav>
 
 
@@ -39,7 +41,7 @@
         });
     }    
 
-    function mostrarPreguntas() {
+    function obtenerPreguntas() {
         fetch(`https://dungeer.vercel.app/api/damelaspreguntas`)
             .then(datos => datos.json)
             .then(json => {
@@ -52,6 +54,10 @@
                 console.log.preguntas;
                 pregunta.innerText = preguntas;
         });
+    }
+
+    function mostrarPreguntas() {
+        
     }
     
 
