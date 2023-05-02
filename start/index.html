@@ -1,20 +1,29 @@
 <!DOCTYPE html>
+
+<style>
+    
+</style>
+
 <nav>
     <a href="start">Start new game</a>
     <a href="play">Play an existing game</a>    
 </nav>
 <h1>START</h1>
 
-<nav>
-    <button onclick="generarPin()">Start</button>
-    <button onclick="obtenerPreguntas()" >Generar preguntas</button>  
+<div id="lodearriba">
+    <nav>
+        <button onclick="generarPin()">Start</button>
+        <button onclick="obtenerPreguntas()" >Generar preguntas</button>  
 
-</nav>
+    </nav>
 
 
-<p id="pinEl"></p>
-<p id="userEl"></p>
+    <p id="pinEl"></p>
+    <p id="userEl"></p>
+</div>
+
 <p id="preEl"></p>
+
   
 
 <script>
@@ -41,6 +50,7 @@
     }    
 
     function obtenerPreguntas() {
+        ocultarCosas();
         fetch(`https://dungeer.vercel.app/api/damelaspreguntas`)
             .then(datos => datos.json())
             .then(questions => {
@@ -57,7 +67,15 @@
                 
                 preEl.innerText = preguntas;
         });
+
+        //Aqui va ocultar cosas 
+
+        function ocultarCosas () {
+            lodearriba.style.display = "none";
+        }
     }
+
+    
 
 
 </script>
