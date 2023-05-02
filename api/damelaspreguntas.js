@@ -2,7 +2,7 @@ export default function hadler(request, response) {
     const questions = {
         "preguntas" : {
             "pregunta1" : {
-                "Pregunta" : "2+1?",
+                "pregunta" : "2+1?",
                 "Res1" : "2",
                 "Res2" : "3",
                 "Res3" : "5",
