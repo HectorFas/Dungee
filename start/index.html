@@ -6,14 +6,16 @@
 </nav>
 <h1>START</h1>
 
-<div id="lodearriba">
-    <nav>
-        <button onclick="generarPin()">Start</button>
-        <button onclick="obtenerPreguntas()" >Generar preguntas</button>  
-
-    </nav>
-    <p id="pinEl"></p>
-    <p id="userEl"></p>
+<div style="display: flex;">
+    <div id="lodearriba">
+        <nav>
+            <button onclick="generarPin()">Start</button>
+            <button onclick="obtenerPreguntas()" >Generar preguntas</button>  
+    
+        </nav>
+        <p id="pinEl"></p>
+        <p id="userEl"></p>
+    </div>
 </div>
 
 <div id="preEl"></div>
@@ -79,9 +81,7 @@
 
 <style>
     
-    #lodearriba {
-        display: flex;
-    }
+
     .oculto{
         animation: roll-out-left 0.6s ease-in both;
         overflow: hidden;
