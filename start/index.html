@@ -54,11 +54,11 @@
 
                 for (const pregunta in questions.preguntas) {
                     console.log("adsfdasfdasdas" + pregunta);
-                    preguntas.innetText += "<h1>" + questions.preguntas[pregunta].Pregunta + "</h1>" // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
-                    preguntas.innetText += questions.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
-                    preguntas.innetText += questions.preguntas[pregunta].Res2
-                    preguntas.innetText += questions.preguntas[pregunta].Res3
-                    preguntas.innetText += questions.preguntas[pregunta].Corr
+                    preguntas += "<h1>" + questions.preguntas[pregunta].Pregunta + "</h1>" // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
+                    preguntas += questions.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
+                    preguntas += questions.preguntas[pregunta].Res2
+                    preguntas += questions.preguntas[pregunta].Res3
+                    preguntas += questions.preguntas[pregunta].Corr
                 }
                 
                 console.log(preguntas);
