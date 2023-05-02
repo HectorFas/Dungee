@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 
-<style>
-    
-</style>
-
 <nav>
     <a href="start">Start new game</a>
     <a href="play">Play an existing game</a>    
@@ -71,11 +67,16 @@
         //Aqui va ocultar cosas 
 
         function ocultarCosas () {
-            lodearriba.style.display = "none";
+            lodearriba.classList.toggle("oculto");
         }
     }
 
     
-
-
 </script>
+
+
+<style>
+    .ocutlo{
+        display: none;
+    }
+</style>
