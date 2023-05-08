@@ -71,6 +71,8 @@
         //Aqui va ocultar cosas 
 
         function ocultarCosas () {
+
+
             lodearriba.classList.toggle("oculto");
         }
     }
@@ -83,33 +85,22 @@
     
 
     .oculto{
-        animation: roll-out-left 0.6s ease-in both;
-        overflow: hidden;
+        display: none;
+        color: green;
+       
     }
 
-    
-    @keyframes desaparecer {
-        99% {
-            transform: scaleY(0);     
+
+    @keyframes roll-out-left {
+        0% {
+                    transform: translateX(0) rotate(0deg);
+            opacity: 1;
         }
         100% {
-            height: 0px;
-            display: none;
+                    transform: translateX(1000px) rotate(540deg);
+            opacity: 0;
         }
     }
-
-
-
-@keyframes roll-out-left {
-  0% {
-            transform: translateX(0) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-            transform: translateX(1000px) rotate(540deg);
-    opacity: 0;
-  }
-}
 
 
 </style>
