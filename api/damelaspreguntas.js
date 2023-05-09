@@ -9,7 +9,7 @@ export default function hadler(request, response) {
                 "Corr" : "3"
             },
             "pregunta2" : {
-                "pregunta" : "2+2",
+                "pregunta" : "2+2?",
                 "Res1" : "4",
                 "Res2" : "3",
                 "Res3" : "5",
@@ -17,7 +17,7 @@ export default function hadler(request, response) {
     
             },
             "pregunta3" : {
-                "pregunta" : "10+9",
+                "pregunta" : "10+9?",
                 "Res1" : "9",
                 "Res2" : "30",
                 "Res3" : "19",
@@ -25,7 +25,7 @@ export default function hadler(request, response) {
     
             },
             "pregunta4" : {
-                "pregunta" : "10+1",
+                "pregunta" : "10+1?",
                 "Res1" : "11",
                 "Res2" : "30",
                 "Res3" : "19",

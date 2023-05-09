@@ -4,10 +4,11 @@
     <a href="start">Start new game</a>
     <a href="play">Play an existing game</a>    
 </nav>
-<h1>START</h1>
+
 
 <div style="display: flex;">
     <div id="lodearriba">
+        <h1>START</h1>
         <nav>
             <button onclick="generarPin()">Start</button>
             <button onclick="obtenerPreguntas()" >Generar preguntas</button>  
@@ -31,7 +32,7 @@
     }    
 
     function obtenerUsuario (){
-        fetch(`https://dungeer.vercel.app/api/damelosuser?pin=${pin}`)
+        fetch(`/api/damelosuser?pin=${pin}`)
         .then(datos => datos.json())
         .then(json => {
             
@@ -48,7 +49,7 @@
     function obtenerPreguntas() {
         ocultarCosas();
 
-        fetch(`https://dungeer.vercel.app/api/damelaspreguntas`)
+        fetch(`/api/damelaspreguntas`)
             .then(datos => datos.json())
             .then(questions => {
                 console.log(questions);
@@ -56,11 +57,13 @@
 
                 for (const pregunta in questions.preguntas) {
                     console.log("adsfdasfdasdas" + pregunta);
-                    preguntas += "<h1>" + questions.preguntas[pregunta].pregunta + "</h1>" // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
-                    preguntas += questions.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
-                    preguntas += questions.preguntas[pregunta].Res2
-                    preguntas += questions.preguntas[pregunta].Res3
-                    preguntas += questions.preguntas[pregunta].Corr
+                    preguntas += "<h1>" + questions.preguntas[pregunta].pregunta +  "</h1>" // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
+                    preguntas += "<ul>";
+                    preguntas += "<li>"+questions.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
+                    preguntas += "<li>"+questions.preguntas[pregunta].Res2
+                    preguntas += "<li>"+questions.preguntas[pregunta].Res3
+                    preguntas += "<li>"+questions.preguntas[pregunta].Corr
+                    preguntas += "</ul>";
                 }
                 
                 console.log(preguntas);
