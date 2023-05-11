@@ -3,26 +3,61 @@
     <a href="start">Start new game</a>
     <a href="play">Play an existing game</a>    
 </nav>
-<h1>PLAY</h1>
+
+<div id="ocultar"> 
+    <h1>PLAY</h1>
 
 
-<input id="pinbe" placeholder="PIN"/>
-<input id="nombe" placeholder="Tu nombre"/>
+    <input id="pinEl" placeholder="PIN"/>
+    <input id="nomEl" placeholder="Tu nombre"/>
 
+    <button onclick="apuntarse()">PLAY</button>
+</div>
+<div id="waitingScreen" class="oculto">
+    <h1>ESPERANDOOOOO</h1>
+</div>
 
-
-<button onclick="apuntarse()">PLAY</button>
 
 <script>
     function apuntarse() {
 
-        const nom = nombe.value;
-        const pin = pinbe.value;
-        fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}/users.json`, {
+        fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pinEl.value}/users.json`, {
             method: 'POST',
-            body: `{"name": "${nom}"}`
+            body: `{"name": "${nomEl.value}"}`
         })
+
+        ocultar.classList.toggle("oculto");
+        waitingScreen.classList.toggle("oculto");
+
     }
     
 
 </script>
+
+<style>
+     nav {
+        display: flex;
+        gap: 1em;
+        padding: 22px;
+        background: linear-gradient(90deg, hsl(160, 75%, 51%), hsl(204, 49%, 22%));
+        color: white;
+    }
+
+    nav span.separador {
+        width: 2px;
+        background: linear-gradient(90deg, hsl(0, 44%, 28%), hsl(204, 49%, 22%));
+    }    
+
+    nav a {
+        color: white;
+        text-decoration: none;
+    }
+
+    nav a:hover {
+        color: rgb(255, 183, 49);
+    }
+
+    .oculto {
+        display: none;
+    }
+</style>

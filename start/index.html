@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 <nav>
+    <span class="separador"></span>
+    <a href="">Proyecto Dungee</a>
     <a href="start">Start new game</a>
     <a href="play">Play an existing game</a>    
 </nav>
@@ -25,10 +27,13 @@
 
 <script>
     let pin;
+    let obtenerUsuarioInterval;
+
+
     function generarPin (){
         pin = Math.floor(Math.random()*10000);
         pinEl.innerText = pin;
-        setInterval(obtenerUsuario, 3000);       
+        obtenerUsuarioInterval  =  setInterval(obtenerUsuario, 3000);       
     }    
 
     function obtenerUsuario (){
@@ -48,62 +53,90 @@
 
     function obtenerPreguntas() {
         ocultarCosas();
+        clearInterval(obtenerUsuarioInterval);
 
         fetch(`/api/damelaspreguntas`)
             .then(datos => datos.json())
-            .then(questions => {
-                console.log(questions);
+            .then(json => {
                 let preguntas = "";
+                let i = 0;
 
-                for (const pregunta in questions.preguntas) {
-                    console.log("adsfdasfdasdas" + pregunta);
-                    preguntas += "<h1>" + questions.preguntas[pregunta].pregunta +  "</h1>" // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
+                for (const pregunta in json.preguntas) {
+                    preguntas += `<div id='pregunta${i}' class = 'oculto'>`;
+                    preguntas += "<h1>" + json.preguntas[pregunta].pregunta +  "</h1>" // Indicamos la "ruta" del json /questions/preguntas/pregunta/pregunta
                     preguntas += "<ul>";
-                    preguntas += "<li>"+questions.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
-                    preguntas += "<li>"+questions.preguntas[pregunta].Res2
-                    preguntas += "<li>"+questions.preguntas[pregunta].Res3
-                    preguntas += "<li>"+questions.preguntas[pregunta].Corr
+                    preguntas += "<li>"+json.preguntas[pregunta].Res1       // Recorriendo cada uno de los elementos del json.
+                    preguntas += "<li>"+json.preguntas[pregunta].Res2       // <li> no hace falta cerrarlo   
+                    preguntas += "<li>"+json.preguntas[pregunta].Res3
+                    preguntas += "<li>"+json.preguntas[pregunta].Corr
                     preguntas += "</ul>";
+                    preguntas += "</div>";
+                    i++;
                 }
                 
-                console.log(preguntas);
-
                 preEl.innerHTML = preguntas;
+
+                irMostrandoPreguntas(i-1);
+            });
+    }
+    
+    function irMostrandoPreguntas(cantidad) {
+        let i = 0;
+
+        fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}`, {
+            method: 'POST',
+            body: `{"pregunta": ${i}}`
         });
 
-        //Aqui va ocultar cosas 
-
-        function ocultarCosas () {
+        document.getElementById(`pregunta${i}`).classList.toggle("oculto");
 
 
-            lodearriba.classList.toggle("oculto");
-        }
+        
+        let irMostrandoPreguntasInterval =  setInterval(() =>{
+            document.getElementById(`pregunta${i}`).classList.toggle("oculto");
+            i++;
+            fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}`, {
+                method: 'POST',
+                body: `{"pregunta": ${i}}`
+            });
+            document.getElementById(`pregunta${i}`).classList.toggle("oculto");
+            
+            if (i == cantidad) {
+                clearInterval(irMostrandoPreguntasInterval);
+            }
+        }, 1500);
     }
 
-    
+    //Aqui va ocultar cosas 
+
+    function ocultarCosas () {
+
+
+        lodearriba.classList.toggle("oculto");
+    }
+
 </script>
 
 
 <style>
-    
+    nav {
+        display: flex;
+        gap: 1em;
+        padding: 22px;
+        background: linear-gradient(90deg, hsl(160, 75%, 51%), hsl(204, 49%, 22%));
+        color: white;
+    }
+
+    nav span.separador {
+        width: 2px;
+        background: linear-gradient(90deg, hsl(0, 44%, 28%), hsl(204, 49%, 22%));
+    }    
+
 
     .oculto{
         display: none;
-        color: green;
-       
     }
 
-
-    @keyframes roll-out-left {
-        0% {
-                    transform: translateX(0) rotate(0deg);
-            opacity: 1;
-        }
-        100% {
-                    transform: translateX(1000px) rotate(540deg);
-            opacity: 0;
-        }
-    }
-
+    
 
 </style>
