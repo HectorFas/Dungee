@@ -31,6 +31,14 @@ export default function hadler(request, response) {
                 "Res3" : "19",
                 "Corr" : "11"
     
+            },
+            "pregunta5" : {
+                "pregunta" : "Capital de España",
+                "Res1" : "Madrid",
+                "Res2" : "BArcelona",
+                "Res3" : "Valencia",
+                "Corr" : "Madrid"
+    
             }
         }
         
