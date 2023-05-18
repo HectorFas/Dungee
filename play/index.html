@@ -4,35 +4,123 @@
     <a href="/play">Play an existing game</a>    
 </nav>
 
-<div id="ocultar"> 
+<div id="apuntarseScreen" class="fragment"> 
     <h1>PLAY</h1>
-
 
     <input id="pinEl" placeholder="PIN"/>
     <input id="nomEl" placeholder="Tu nombre"/>
 
     <button onclick="apuntarse()">PLAY</button>
 </div>
-<div id="waitingScreen" class="oculto">
+
+
+<div id="waitingScreen" class="fragment">
     <div class="loading">
- <p>Cargando</p>
-       <span></span>
+      <p>Cargando</p>
+      <span></span>
     </div>
  </div>
 
 
+ <div id="botonesScreen" class="fragment">
+   <p id="preguntaEl"></p>
+   <div class="botones">
+      <button id="ba" onclick="responder('a')">Rojo</button>
+      <button id="bb" onclick="responder('b')">Azul</button>
+      <button id="bc" onclick="responder('c')">Amarillo</button>
+      <button id="bd" onclick="responder('d')">Verde</button>
+   </div>
+</div>
+
 <script>
+   let pin;
+   let nom;
+   let preguntaActual;  // 2
+   let userid;
+
+   mostrar("apuntarseScreen", "fragment")
+
+
+
     function apuntarse() {
-
-        fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pinEl.value}/users.json`, {
+         pin = pinEl.value;
+         nom = nomEl.value;
+         
+        fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}/users.json`, {
             method: 'POST',
-            body: `{"name": "${nomEl.value}"}`
+            body: `{"name": "${nom}"}`
         })
+        .then(data => data.json())
+        .then(json => {
+            userid = json.name
+        });
 
-        ocultar.classList.toggle("oculto");
-        waitingScreen.classList.toggle("content");
+        mostrar("waitingScreen", "fragment")
 
+
+
+        obtenerPreguntaActual();
     }
+
+    function obtenerPreguntaActual() {
+      setInterval(()=>{
+         fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}/pregunta.json`)
+         .then(data => data.json())  //Cogemos el json preguntas del fetch(descargar) y de ahi como esos datos nos los da como String en JSON.
+         .then(preguntaFirebase => {
+            if (preguntaFirebase != null) {
+
+               if (preguntaFirebase != preguntaActual) {
+                  activarBotones();
+               }
+
+               preguntaActual = preguntaFirebase;
+               mostrar("botonesScreen", "fragment")
+            }
+            preguntaEl.innerText = preguntaActual;
+         })
+      }, 1500);
+    }
+
+
+
+    function responder(respuesta) {
+      desactivarBotones();
+
+      console.log(`ReSPONDO A LA PREGUNTA ${preguntaActual} LA ${respuesta}`)
+      fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}/users/${userid}/respuestas/pregunta${preguntaActual}.json`, {
+            method: 'PUT',
+            body: `{"letra" : "${respuesta}"}`
+        })
+    }
+
+
+    function desactivarBotones(){
+      ba.disabled = true;
+      bb.disabled = true;
+      bc.disabled = true;
+      bd.disabled = true;
+    }
+
+    function activarBotones(){
+      ba.disabled = false;
+      bb.disabled = false;
+      bc.disabled = false;
+      bd.disabled = false;
+    }
+
+
+
+
+
+
+
+    // lib
+    function mostrar(elementId, className) {
+        document.querySelectorAll(`.${className}`).forEach(el => el.classList.add("oculto"))
+        document.getElementById(elementId).classList.remove("oculto")
+    }
+
+
     
 
 </script>
@@ -67,11 +155,11 @@
 
     
     .content {
-   width: 100%;
-   height: 100vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
    .content .loading {
       width: 80px;
