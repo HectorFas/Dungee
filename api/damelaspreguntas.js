@@ -6,14 +6,14 @@ export default function hadler(request, response) {
                 "Res1" : "2",
                 "Res2" : "3",
                 "Res3" : "5",
-                "Corr" : "3"
+                "Corr" : "8"
             },
             "pregunta2" : {
                 "pregunta" : "2+2?",
                 "Res1" : "4",
                 "Res2" : "3",
                 "Res3" : "5",
-                "Corr" : "a"
+                "Corr" : "8"
     
             },
             "pregunta3" : {
@@ -21,7 +21,7 @@ export default function hadler(request, response) {
                 "Res1" : "9",
                 "Res2" : "30",
                 "Res3" : "19",
-                "Corr" : "19"
+                "Corr" : "8"
     
             },
             "pregunta4" : {
@@ -29,15 +29,15 @@ export default function hadler(request, response) {
                 "Res1" : "11",
                 "Res2" : "30",
                 "Res3" : "19",
-                "Corr" : "11"
+                "Corr" : "8"
     
             },
             "pregunta5" : {
                 "pregunta" : "Capital de España",
                 "Res1" : "Madrid",
-                "Res2" : "BArcelona",
+                "Res2" : "Barcelona",
                 "Res3" : "Valencia",
-                "Corr" : "Madrid"
+                "Corr" : "Burgos"
     
             }
         }

@@ -106,7 +106,7 @@
             upDatePreguntaActual(i, pin);
             
             if (i == cantidad) {
-                upDatePreguntaActual(-1, pin);
+                upDatePreguntaActual(i, pin);
                 clearInterval(irMostrandoPreguntasInterval);
                 mostrarResultados();
             }
@@ -165,7 +165,7 @@
         background-color: red;
     }
     .pregunta li:nth-child(2) {
-        background-color: blue;
+        background-color: rgb(26, 141, 207);
     }
     .pregunta li:nth-child(3) {
         background-color: green;
