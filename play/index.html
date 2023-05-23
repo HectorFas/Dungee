@@ -35,7 +35,8 @@
 <script type="module">
 
    import {getPreguntaActual, actualizarRespuesta} from '/modules/bd.js';
-   
+   import {mostrar} from '/modules/ui.js';
+
    let pin;
    let nom;
    let preguntaActual;  // 2
@@ -55,13 +56,8 @@
     function apuntarse() {
          pin = pinEl.value;
          nom = nomEl.value;
-         
-        fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}/users.json`, {
-            method: 'POST',
-            body: `{"name": "${nom}"}`
-        })
-        .then(data => data.json())
-        .then(json => {
+        
+         addUser(pin,nom).then(json => {
             userid = json.name
         });
 
@@ -113,20 +109,6 @@
       bc.disabled = false;
       bd.disabled = false;
     }
-
-
-
-
-
-
-
-    // lib
-    function mostrar(elementId, className) {
-        document.querySelectorAll(`.${className}`).forEach(el => el.classList.add("oculto"))
-        document.getElementById(elementId).classList.remove("oculto")
-    }
-
-
     
 
 </script>
