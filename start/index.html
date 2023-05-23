@@ -9,8 +9,8 @@
 
 <div style="display: flex;">
     <div>
-        <h1>START</h1>
         <div id="createFragment" class="fragment" >
+            <h1>START</h1>
             <button id="generarBtn">Generar PIN</button>
         </div>
         <div id="pinFragment" class="fragment">
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div id="preEl"></div>
+<div id="preEl" class="fragment"></div>
 
 
   
@@ -61,6 +61,7 @@
     }    
 
     function empezarPartida() {
+        mostrar("preEl", "fragment");
         
         clearInterval(obtenerUsuarioInterval);
 
@@ -94,8 +95,6 @@
     function irMostrandoPreguntas(cantidad) {
         let i = 0;
 
-        
-        
 
         mostrar(`pregunta${i}`, "pregunta");
         upDatePreguntaActual(i, pin);
@@ -144,6 +143,35 @@
         display: none;
     }
 
-    
+    .pregunta ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
+        padding: 0;
+
+       
+    }
+
+    .pregunta h1 {
+        text-align: center;
+    }
+    .pregunta li {
+            list-style-type: none;
+            padding: 1em;
+            text-align: center;
+        }
+
+    .pregunta li:nth-child(1) {
+        background-color: red;
+    }
+    .pregunta li:nth-child(2) {
+        background-color: blue;
+    }
+    .pregunta li:nth-child(3) {
+        background-color: green;
+    }
+    .pregunta li:nth-child(4) {
+        background-color: yellow;
+    }
 
 </style>

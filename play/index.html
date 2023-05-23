@@ -34,7 +34,7 @@
 
 <script type="module">
 
-   import {getPreguntaActual, actualizarRespuesta} from '/modules/bd.js';
+   import {getPreguntaActual, actualizarRespuesta, addUser} from '/modules/bd.js';
    import {mostrar} from '/modules/ui.js';
 
    let pin;
@@ -141,6 +141,10 @@
         display: none;
     }
 
+    .botones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
     
     .content {
       width: 100%;
