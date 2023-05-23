@@ -24,7 +24,11 @@
 
 <div id="preEl"></div>
 
-  
+<script type="module">
+    import {
+        fetchUsuarios, fetchPreguntas, upDatePreguntaActual
+    } from `/modules/bd.js`
+</script>  
 
 
 <script>
@@ -92,7 +96,7 @@
         
 
         mostrar(`pregunta${i}`, "pregunta");
-        upDatePreguntaActual(i);
+        upDatePreguntaActual(i, pin);
 
         let irMostrandoPreguntasInterval =  setInterval(() =>{
 
@@ -116,22 +120,7 @@
         document.getElementById(elementId).classList.remove("oculto")
     }
 
-    function fetchUsuarios() {
-        return fetch(`/api/damelosuser?pin=${pin}`)
-                .then(datos => datos.json())
-    }
 
-    function fetchPreguntas() {
-        return fetch(`/api/damelaspreguntas`)
-            .then(datos => datos.json())
-    }
-
-    function upDatePreguntaActual(i) {
-        fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}/pregunta.json`, {
-            method: 'PUT',
-            body: `{"valor": ${i}}`
-        });
-    }
 
 </script>
 

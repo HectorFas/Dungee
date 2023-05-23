@@ -59,14 +59,12 @@
 
 
 
-        obtenerPreguntaActual();
+        obtenerPreguntaActual(pin);
     }
 
     function obtenerPreguntaActual() {
       setInterval(()=>{
-         fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}/pregunta.json`)
-         .then(data => data.json())  //Cogemos el json preguntas del fetch(descargar) y de ahi como esos datos nos los da como String en JSON.
-         .then(preguntaFirebase => {
+         getPreguntaActual(pin).then(preguntaFirebase => {
             if (preguntaFirebase != null) {
 
                if (preguntaFirebase != preguntaActual) {
@@ -86,11 +84,7 @@
     function responder(respuesta) {
       desactivarBotones();
 
-      console.log(`ReSPONDO A LA PREGUNTA ${preguntaActual} LA ${respuesta}`)
-      fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}/users/${userid}/respuestas/pregunta${preguntaActual}.json`, {
-            method: 'PUT',
-            body: `{"letra" : "${respuesta}"}`
-        })
+      upDateRespuesta(pin, userid, preguntaActual, respuesta)
     }
 
 
