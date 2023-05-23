@@ -10,7 +10,7 @@
     <input id="pinEl" placeholder="PIN"/>
     <input id="nomEl" placeholder="Tu nombre"/>
 
-    <button onclick="apuntarse()">PLAY</button>
+    <button id="apuntarseBtn" >PLAY</button>
 </div>
 
 
@@ -25,22 +25,32 @@
  <div id="botonesScreen" class="fragment">
    <p id="preguntaEl"></p>
    <div class="botones">
-      <button id="ba" onclick="responder('a')">Rojo</button>
-      <button id="bb" onclick="responder('b')">Azul</button>
-      <button id="bc" onclick="responder('c')">Amarillo</button>
-      <button id="bd" onclick="responder('d')">Verde</button>
+      <button id="ba">Rojo</button>
+      <button id="bb">Azul</button>
+      <button id="bc">Amarillo</button>
+      <button id="bd">Verde</button>
    </div>
 </div>
 
-<script>
+<script type="module">
+
+   import {getPreguntaActual, actualizarRespuesta} from '/modules/bd.js';
+   
    let pin;
    let nom;
    let preguntaActual;  // 2
    let userid;
 
+   ba.onclick = () => { responder('a') };
+   bb.onclick = () => { responder('b') };
+   bc.onclick = () => { responder('c') };
+   bd.onclick = () => { responder('d') };
+
+   apuntarseBtn.onclick = apuntarse;
+
+
+
    mostrar("apuntarseScreen", "fragment")
-
-
 
     function apuntarse() {
          pin = pinEl.value;
@@ -57,26 +67,28 @@
 
         mostrar("waitingScreen", "fragment")
 
-
-
-        obtenerPreguntaActual(pin);
+        obtenerPreguntaActual();
     }
 
     function obtenerPreguntaActual() {
-      setInterval(()=>{
-         getPreguntaActual(pin).then(preguntaFirebase => {
-            if (preguntaFirebase != null) {
+      setInterval(
+         
+         () => {  // funcio a ejecutar
+            getPreguntaActual(pin).then(preguntaFirebase => {
+               if (preguntaFirebase != null) {
 
-               if (preguntaFirebase != preguntaActual) {
-                  activarBotones();
+                  if (preguntaFirebase.valor != preguntaActual) {
+                     activarBotones();
+                  }
+
+                  preguntaActual = preguntaFirebase.valor;
+                  mostrar("botonesScreen", "fragment")
                }
-
-               preguntaActual = preguntaFirebase;
-               mostrar("botonesScreen", "fragment")
-            }
-            preguntaEl.innerText = preguntaActual;
-         })
-      }, 1500);
+               preguntaEl.innerText = preguntaActual;
+            })
+         }, 
+         1500 //temps en milisegons
+      );
     }
 
 
@@ -84,7 +96,7 @@
     function responder(respuesta) {
       desactivarBotones();
 
-      upDateRespuesta(pin, userid, preguntaActual, respuesta)
+      actualizarRespuesta(pin, userid, preguntaActual, respuesta);
     }
 
 

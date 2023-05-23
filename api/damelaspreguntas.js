@@ -13,7 +13,7 @@ export default function hadler(request, response) {
                 "Res1" : "4",
                 "Res2" : "3",
                 "Res3" : "5",
-                "Corr" : "4"
+                "Corr" : "a"
     
             },
             "pregunta3" : {
@@ -41,8 +41,6 @@ export default function hadler(request, response) {
     
             }
         }
-        
-
     }
 
     response.json(questions);

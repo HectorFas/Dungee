@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <nav>
     <span class="separador"></span>
     <a href="">Proyecto Dungee</a>
@@ -12,10 +11,10 @@
     <div>
         <h1>START</h1>
         <div id="createFragment" class="fragment" >
-            <button onclick="generarPin()">Generar PIN</button>
+            <button id="generarBtn">Generar PIN</button>
         </div>
         <div id="pinFragment" class="fragment">
-            <button onclick="empezarPartida()">Empezar Partida</button>  
+            <button id="empezarBtn">Empezar Partida</button>  
             <p id="pinEl"></p>
             <p id="userEl"></p>
         </div>
@@ -24,21 +23,24 @@
 
 <div id="preEl"></div>
 
+
+  
+
 <script type="module">
-    import {
-        fetchUsuarios, fetchPreguntas, upDatePreguntaActual
-    } from `/modules/bd.js`
-</script>  
+    import {fetchUsuarios, fetchPreguntas, upDatePreguntaActual} from '/modules/bd.js'
+    import {mostrar} from '/modules/ui.js'
 
 
-<script>
     let pin;
     let obtenerUsuarioInterval;
 
+    generarBtn.onclick = generarPin;
+    empezarBtn.onclick = empezarPartida;
+
+
     mostrar("createFragment", "fragment")
 
-
-    function generarPin (){
+    function generarPin(){
         mostrar("pinFragment", "fragment")
         pin = Math.floor(Math.random()*10000);
         pinEl.innerText = pin;
@@ -46,7 +48,7 @@
     }    
 
     function mostrarListaDeUsuarios (){
-        fetchUsuarios().then(json => {
+        fetchUsuarios(pin).then(json => {
             if (json == null) return;
             let lista = "";
 
@@ -102,23 +104,21 @@
 
             i++;
             mostrar(`pregunta${i}`, "pregunta");
-            upDatePreguntaActual(i);
+            upDatePreguntaActual(i, pin);
             
             if (i == cantidad) {
+                upDatePreguntaActual(-1, pin);
                 clearInterval(irMostrandoPreguntasInterval);
+                mostrarResultados();
             }
         }, 2500);
     }
 
-    //Aqui va ocultar cosas 
+    // Aqui va ocultar cosas 
 
-    //Libreria
+    // Libreria
    
 
-    function mostrar(elementId, className) {
-        document.querySelectorAll(`.${className}`).forEach(el => el.classList.add("oculto"))
-        document.getElementById(elementId).classList.remove("oculto")
-    }
 
 
 
