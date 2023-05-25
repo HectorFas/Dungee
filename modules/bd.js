@@ -1,8 +1,13 @@
 const dburl = "https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app";
 
 export function fetchUsuarios(pin) {
-    return fetch(`/api/damelosuser?pin=${pin}`)
-            .then(datos => datos.json())
+        return fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}.json`)
+            .then(datosstring => datosstring.json())
+    
+        
+    
+    // return fetch(`/api/damelosuser?pin=${pin}`)
+    //         .then(datos => datos.json())
 }
 
 export function fetchPreguntas() {
