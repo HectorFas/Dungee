@@ -37,3 +37,8 @@ export function actualizarRespuesta(pin, userid, preguntaActual, respuesta){
             body: `{"letra" : "${respuesta}"}`
     })
 }
+
+export function mostrarRespuesta(pin, userid, preguntaActual) {
+    return fetch(`${dburl}/pins/pin${pin}//users/${userid}/respuestas/pregunta${preguntaActual}.json`)
+    .then(data => data.json())
+}
