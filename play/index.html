@@ -35,7 +35,7 @@
 <script type="module">
 
    import {getPreguntaActual, actualizarRespuesta, addUser} from '/modules/bd.js';
-   import {mostrar} from '/modules/ui.js';
+   import {mostrar, ocultar} from '/modules/ui.js';
 
    let pin;
    let nom;
@@ -97,10 +97,13 @@
 
 
     function desactivarBotones(){
+
       ba.disabled = true;
       bb.disabled = true;
       bc.disabled = true;
       bd.disabled = true;
+      ocultar("botones", "oculto")
+
     }
 
     function activarBotones(){
@@ -108,6 +111,7 @@
       bb.disabled = false;
       bc.disabled = false;
       bd.disabled = false;
+      mostrar("apuntarseScreen", "fragment")
     }
     
 
@@ -189,12 +193,11 @@
       button:hover,
       button:active{
       background-size: 100% 100%;
-      color: #fff;
+      color: rgb(255, 255, 255);
       --t: 0.2s 0.1s;
       }
       button:active {
       --s: #0005;
-      transition: none;
       }
 
     .botones #ba {
@@ -210,8 +213,7 @@
         background-color: yellow;
     }
 
-  
-      
+   
     
 
     
