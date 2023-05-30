@@ -73,8 +73,12 @@
             getPreguntaActual(pin).then(preguntaFirebase => {
                if (preguntaFirebase != null) {
 
+                  if (preguntaFirebase == -1) {
+                    //Motrar fin de partida
+                    clearInterval(obtenerPreguntaActual);
+                  }
                   if (preguntaFirebase.valor != preguntaActual) {
-                     activarBotones();
+                     activarBotones(true);
                   }
 
                   preguntaActual = preguntaFirebase.valor;
@@ -96,21 +100,11 @@
     }
 
 
-    function desactivarBotones(){
-
-      ba.disabled = true;
-      bb.disabled = true;
-      bc.disabled = true;
-      bd.disabled = true;
-     
-
-    }
-
-    function activarBotones(){
-      ba.disabled = false;
-      bb.disabled = false;
-      bc.disabled = false;
-      bd.disabled = false;
+    function activarBotones(siono){
+      ba.disabled = !siono;
+      bb.disabled = !siono;
+      bc.disabled = !siono;
+      bd.disabled = !siono;
      
     }
     
@@ -148,6 +142,7 @@
     .botones {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      font-size: 5vmin;
     }
     
     .content {
@@ -163,8 +158,6 @@
       --border: 4px;    /* the border width */
       --slant: 1.9em;   /* control the slanted corners */
       position: relative;;
-      
-      font-size: 35px;
       padding: 0.4em 1.2em;
       border: none;
       cursor: pointer;
@@ -200,6 +193,7 @@
       --s: #0005;
       }
 
+
     .botones #ba {
         background-color: red;
     }
@@ -213,8 +207,5 @@
         background-color: yellow;
     }
 
-   
-    
-
-    
+  
 </style>

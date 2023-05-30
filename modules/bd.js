@@ -1,46 +1,32 @@
 const dburl = "https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app";
 
 export function fetchUsuarios(pin) {
-        return fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}.json`)
-            .then(datosstring => datosstring.json())
-    
-        
-    
-    // return fetch(`/api/damelosuser?pin=${pin}`)
-    //         .then(datos => datos.json())
+    return fetch(`/api/fetchusuarios?pin=${pin}`)
+            .then(datos => datos.json())
 }
 
 export function fetchPreguntas() {
-    return fetch(`/api/damelaspreguntas`)
+    return fetch(`/api/fetchpreguntas`)
         .then(datos => datos.json())
 }
 
 export function upDatePreguntaActual(i, pin) {
-    fetch(`${dburl}/pins/pin${pin}/pregunta.json`, {
-        method: 'PUT',
-        body: `{"valor": ${i}}`
-    });
+    fetch(`/api/updatepreguntaactual?i=${i}&pin=${pin}`)
 }
 
 export function addUser(pin,nom){
-    return fetch(`https://dungee-431f9-default-rtdb.europe-west1.firebasedatabase.app/pins/pin${pin}/users.json`, {
-            method: 'POST',
-            body: `{"name": "${nom}"}`
-        })
-        .then(data => data.json())
+    return fetch(`/api/adduser?nom=${nom}&pin=${pin}`)
+    .then(data => data.json())
 }
 
 export function getPreguntaActual(pin){
-    return fetch(`${dburl}/pins/pin${pin}/pregunta.json`)
-            .then(data => data.json())  //Cogemos el json preguntas del fetch(descargar) y de ahi como esos datos nos los da como String en JSON.
+    return fetch(`/api/getpreguntaactual?pin=${pin}`)
+    .then(data => data.json())
 }
 
 
 export function actualizarRespuesta(pin, userid, preguntaActual, respuesta){
-    fetch(`${dburl}/pins/pin${pin}/users/${userid}/respuestas/pregunta${preguntaActual}.json`, {
-            method: 'PUT',
-            body: `{"letra" : "${respuesta}"}`
-    })
+    fetch(`/api/actualizarrespuesta?pin=${pin}&userid=${userid}&preguntaActual=${preguntaActual}&respuesta=${respuesta}`)
 }
 
 export function mostrarRespuesta(pin, userid, preguntaActual) {
